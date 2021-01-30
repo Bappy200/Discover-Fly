@@ -1,22 +1,41 @@
-
+//first class increment event
 const firstClassIncrement = document.getElementById('first-class-increment');
 firstClassIncrement.addEventListener('click',function(){
     bookingUpdate('first-class-count', 1);
-   subTotal(150);
+    subTotal(150);
 
 })
 
+
+//first class decrement event
 const firstClassDecrement = document.getElementById('first-class-decrement');
 firstClassDecrement.addEventListener('click',function(){
    const isDecrement =  bookingUpdate('first-class-count', -1);
    if(isDecrement){
        subTotal(-150);
-   }
-    
+   }  
 })
 
 
-// COUNT UPDATING FUNCTION
+//economy class increment event
+const economyClassIncrement = document.getElementById('economy-class-increment');
+economyClassIncrement.addEventListener('click',function(){
+    bookingUpdate('economy-class-count',1);
+    subTotal(100);
+})
+
+
+//economy class decrement event
+const economyClassDecrement = document.getElementById('economy-class-decrement');
+economyClassDecrement.addEventListener('click',function(){
+   const isDecrement =  bookingUpdate('economy-class-count', -1);
+   if(isDecrement){
+       subTotal(-100);
+   }  
+})
+
+
+//booking update increment or decrement
 function bookingUpdate(id, countNumber){
     const booking = document.getElementById(id);
     const bookingCount =  parseInt(booking.value) + countNumber;
@@ -27,15 +46,23 @@ function bookingUpdate(id, countNumber){
 }
 
 
-//subtotal add
+//update subtotal vat and total cont
 function subTotal(many){
     const subTotal = document.getElementById('subtotal');
-    const subTotalMany = parseInt(subTotal.innerHTML) + many;
-    subTotal.innerText = subTotalMany;
+    const subTotalCost = parseInt(subTotal.innerHTML) + many;
+    subTotal.innerText = subTotalCost;
 
-    const vat = subTotalMany * .1;
+    const vat = subTotalCost * .1;
     document.getElementById('vat').innerText = vat;
 
-    const totalMany = subTotalMany + vat;
-    document.getElementById('total').innerText = totalMany; 
+    const totalCost = subTotalCost + vat;
+    document.getElementById('total').innerText = totalCost; 
 }
+
+
+//user alert when book now button click 
+const bookNow = document.getElementById('book-now');
+bookNow.addEventListener('click',function(){
+    const totalAmount = document.getElementById('total').innerText;
+    alert('Your total amount $'+totalAmount+'. Are you conform?');
+})
