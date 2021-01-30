@@ -46,10 +46,10 @@ function bookingUpdate(id, countNumber){
 }
 
 
-//update subtotal vat and total cont
-function subTotal(many){
+//update subtotal vat and total amount
+function subTotal(amount){
     const subTotal = document.getElementById('subtotal');
-    const subTotalCost = parseInt(subTotal.innerHTML) + many;
+    const subTotalCost = parseInt(subTotal.innerHTML) + amount;
     subTotal.innerText = subTotalCost;
 
     const vat = subTotalCost * .1;
@@ -63,6 +63,8 @@ function subTotal(many){
 //user alert when book now button click 
 const bookNow = document.getElementById('book-now');
 bookNow.addEventListener('click',function(){
-    const totalAmount = document.getElementById('total').innerText;
-    alert('Your total amount $'+totalAmount+'. Are you conform?');
+    const totalAmount = parseInt(document.getElementById('total').innerText);
+    if(totalAmount>109){
+        alert('Your total amount is $'+totalAmount+'. Are you conform?');
+    }
 })
